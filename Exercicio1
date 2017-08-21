@@ -1,0 +1,477 @@
+package aulaOka;
+
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.SoftBevelBorder;
+
+public class completo {
+
+	static JFrame fTela = new JFrame();
+	static JFrame fTela2 = new JFrame();
+
+	static JPanel pPainel = new JPanel();
+	static JPanel pPainel2 = new JPanel();
+
+	static JButton btnLimpar = new JButton("LIMPAR");
+	static JButton btnOk = new JButton("Ok");
+
+	static JButton btnCor1 = new JButton();
+	static JButton btnCor2 = new JButton();
+	static JButton btnCor3 = new JButton();
+	static JButton btnCor4 = new JButton();
+	static JButton btnCor5 = new JButton();
+	static JButton btnCor6 = new JButton();
+	static JButton btnCor7 = new JButton();
+	static JButton btnCor8 = new JButton();
+	static JButton btnCor9 = new JButton();
+	static JButton btnCor10 = new JButton();
+	static JButton btnCor11 = new JButton();
+	static JButton btnCor12 = new JButton();
+	static JButton btnCor13 = new JButton();
+	static JButton btnCor14 = new JButton();
+	static JButton btnCor15 = new JButton();
+	static JButton btnCor16 = new JButton();
+
+	static Color cor1 = new Color(255, 255, 255); 
+	static Color cor2 = new Color(255, 160, 122); 
+	static Color cor3 = new Color(255, 20, 147); 
+	static Color cor4 = new Color(255, 0, 0); 
+	static Color cor5 = new Color(255, 165, 0); 
+	static Color cor6 = new Color(255, 255, 0); 
+	static Color cor7 = new Color(0, 255, 0); 
+	static Color cor8 = new Color(0, 100, 0); 
+	static Color cor9 = new Color(0, 245, 255); 
+	static Color cor10 = new Color(0, 0, 255); 
+	static Color cor11 = new Color(85, 26, 139); 
+	static Color cor12 = new Color(139, 0, 139); 
+	static Color cor13 = new Color(205, 155, 129); 
+	static Color cor14 = new Color(139, 69, 19); 
+	static Color cor15 = new Color(139, 139, 122); 
+	static Color cor16 = new Color(0, 0, 0);
+	static Color corSelecionada;
+
+	static JRadioButton radRetangulo = new JRadioButton("Retangulo");
+	static JRadioButton radCirculo = new JRadioButton("Circulo");
+	static JRadioButton radArco = new JRadioButton("Arco");
+
+	static JLabel lPoligono = new JLabel("ESCOLHA UM POLÍGONO ");
+	static JLabel lVertical = new JLabel("Vertical: ");
+	static JLabel lHorizontal = new JLabel("Horizontal: ");
+	static JLabel lAnguloX = new JLabel("X:");
+	static JLabel lAnguloY = new JLabel("Y:");
+
+	static int horizontal;
+	static int vertical;
+	static int x;
+	static int y;
+
+	static JTextField tfTamanhoHorizontal;
+	static JTextField tfTamanhoVertical;
+	static JTextField tfTamanhoAnguloX;
+	static JTextField tfTamanhoAnguloY;
+
+	static ButtonGroup btnGrupo = new javax.swing.ButtonGroup();
+
+	static Graphics2D g2d;
+
+	public static void main(String[] args) {
+
+		Tela();
+
+	}
+
+	public static void Tela() {
+
+		fTela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		fTela.setBounds(100, 100, 1000, 260);
+		fTela.setLayout(null);
+		fTela.setResizable(false);
+		fTela.setVisible(true);
+
+		pPainel.setBackground(Color.LIGHT_GRAY);
+		pPainel.setLayout(null);
+		pPainel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		fTela.add(pPainel).setBounds(10, 10, 975, 215);
+
+		pPainel.add(lPoligono).setBounds(10,10,150, 50);
+		
+		btnGrupo.add(radRetangulo);
+		btnGrupo.add(radCirculo);
+		btnGrupo.add(radArco);
+		
+		pPainel.add(radRetangulo).setBounds(10, 50, 100, 50);
+		pPainel.add(radCirculo).setBounds(110, 50, 100, 50);
+		pPainel.add(radArco).setBounds(210, 50, 110, 50);
+
+		pPainel.add(lHorizontal).setBounds(10, 100, 200, 70);
+		tfTamanhoHorizontal = new JTextField("90");
+		pPainel.add(tfTamanhoHorizontal).setBounds(100, 120, 70, 30);
+
+		pPainel.add(lVertical).setBounds(10, 140, 200, 70);
+		tfTamanhoVertical = new JTextField("60");
+		pPainel.add(tfTamanhoVertical).setBounds(100, 160, 70, 30);
+
+		pPainel.add(lAnguloX).setBounds(210, 100, 200, 70);
+		tfTamanhoAnguloX = new JTextField("5");
+		tfTamanhoAnguloX.setEditable(false);
+		pPainel.add(tfTamanhoAnguloX).setBounds(250, 160, 70, 30);
+
+		pPainel.add(lAnguloY).setBounds(210, 140, 200, 70);
+		tfTamanhoAnguloY = new JTextField("150");
+		tfTamanhoAnguloY.setEditable(false);
+		pPainel.add(tfTamanhoAnguloY).setBounds(250, 120, 70, 30);
+
+		pPainel.add(btnOk).setBounds(350, 50, 80, 30);
+		pPainel.add(btnLimpar).setBounds(350, 100, 80, 30);
+		
+		pPainel.add(btnCor1).setBounds(500, 10, 30, 30);
+		btnCor1.setBackground(new Color(255, 255, 255));
+		btnCor1.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(0, 0, 102), 3));
+		pPainel.add(btnCor2).setBounds(535, 10, 30, 30);
+		btnCor2.setBackground(new Color(255, 160, 122));
+		btnCor2.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(0, 0, 102), 3));
+		pPainel.add(btnCor3).setBounds(570, 10, 30, 30);
+		btnCor3.setBackground(new Color(255, 20, 147));
+		btnCor3.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(0, 0, 102), 3));
+		pPainel.add(btnCor4).setBounds(605, 10, 30, 30);
+		btnCor4.setBackground(new Color(255, 0, 0));
+		btnCor4.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(0, 0, 102), 3));
+		pPainel.add(btnCor5).setBounds(640, 10, 30, 30);
+		btnCor5.setBackground(new Color(255, 165, 0));
+		btnCor5.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(0, 0, 102), 3));
+		pPainel.add(btnCor6).setBounds(675, 10, 30, 30);
+		btnCor6.setBackground(new Color(255, 255, 0));
+		btnCor6.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(0, 0, 102), 3));
+		pPainel.add(btnCor7).setBounds(710, 10, 30, 30);
+		btnCor7.setBackground(new Color(0, 255, 0));
+		btnCor7.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(0, 0, 102), 3));
+		pPainel.add(btnCor8).setBounds(745, 10, 30, 30);
+		btnCor8.setBackground(new Color(0, 100, 0));
+		btnCor8.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(0, 0, 102), 3));
+		pPainel.add(btnCor9).setBounds(500, 50, 30, 30);
+		btnCor9.setBackground(new Color(0, 245, 255));
+		btnCor9.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(0, 0, 102), 3));
+		pPainel.add(btnCor10).setBounds(535, 50, 30, 30);
+		btnCor10.setBackground(new Color(0, 0, 255));
+		btnCor10.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(0, 0, 102), 3));
+		pPainel.add(btnCor11).setBounds(570, 50, 30, 30);
+		btnCor11.setBackground(new Color(85, 26, 139));
+		btnCor11.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(0, 0, 102), 3));
+		pPainel.add(btnCor12).setBounds(605, 50, 30, 30);
+		btnCor12.setBackground(new Color(139, 0, 139));
+		btnCor12.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(0, 0, 102), 3));
+		pPainel.add(btnCor13).setBounds(640, 50, 30, 30);
+		btnCor13.setBackground(new Color(205, 155, 129));
+		btnCor13.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(0, 0, 102), 3));
+		pPainel.add(btnCor14).setBounds(675, 50, 30, 30);
+		btnCor14.setBackground(new Color(139, 69, 19));
+		btnCor14.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(0, 0, 102), 3));
+		pPainel.add(btnCor15).setBounds(710, 50, 30, 30);
+		btnCor15.setBackground(new Color(139, 139, 122));
+		btnCor15.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(0, 0, 102), 3));
+		pPainel.add(btnCor16).setBounds(745, 50, 30, 30);
+		btnCor16.setBackground(new Color(0, 0, 0));
+		btnCor16.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(0, 0, 102), 3));
+
+		btnOk.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				horizontal = Integer.parseInt(tfTamanhoHorizontal.getText());
+				vertical = Integer.parseInt(tfTamanhoVertical.getText());
+				x = Integer.parseInt(tfTamanhoAnguloX.getText());
+				y = Integer.parseInt(tfTamanhoAnguloY.getText());
+
+				Graphics2D g2d = (Graphics2D) pPainel.getGraphics();
+
+				if (radRetangulo.isSelected()) {
+
+					g2d.fillRect(590, 120, horizontal, vertical);
+					SelecionarCor();
+
+				} else if (radCirculo.isSelected()) {
+
+					g2d.fillOval(590, 120, horizontal, vertical);
+					SelecionarCor();
+
+				} else if (radArco.isSelected()) {
+
+					tfTamanhoAnguloX.setEditable(true);
+					tfTamanhoAnguloY.setEditable(true);
+					g2d.fillArc(590, 120, horizontal, vertical, x, y);
+					SelecionarCor();
+				}
+
+			}
+
+		});
+		
+		btnLimpar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				pPainel.repaint();
+			}
+
+		});
+	}
+
+	public static void SelecionarCor() {
+
+		btnCor1.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Graphics2D g2d = (Graphics2D) pPainel.getGraphics();
+				corSelecionada = cor1;
+				g2d.setColor(corSelecionada);
+				g2d.fillRect(590, 120, horizontal, vertical);
+
+				btnOk.setEnabled(false);
+			}
+
+		});
+
+		btnCor2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Graphics2D g2d = (Graphics2D) pPainel.getGraphics();
+				corSelecionada = cor2;
+				g2d.setColor(corSelecionada);
+				g2d.fillRect(590, 120, horizontal, vertical);
+
+				btnOk.setEnabled(false);
+			}
+
+		});
+		
+		btnCor3.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Graphics2D g2d = (Graphics2D) pPainel.getGraphics();
+				corSelecionada = cor3;
+				g2d.setColor(corSelecionada);
+				g2d.fillRect(590, 120, horizontal, vertical);
+
+				btnOk.setEnabled(false);
+			}
+
+		});
+
+		btnCor4.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Graphics2D g2d = (Graphics2D) pPainel.getGraphics();
+				corSelecionada = cor4;
+				g2d.setColor(corSelecionada);
+				g2d.fillRect(590, 120, horizontal, vertical);
+
+				btnOk.setEnabled(false);
+			}
+
+		});
+		
+		btnCor5.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Graphics2D g2d = (Graphics2D) pPainel.getGraphics();
+				corSelecionada = cor5;
+				g2d.setColor(corSelecionada);
+				g2d.fillRect(590, 120, horizontal, vertical);
+
+				btnOk.setEnabled(false);
+			}
+
+		});
+
+		btnCor6.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Graphics2D g2d = (Graphics2D) pPainel.getGraphics();
+				corSelecionada = cor6;
+				g2d.setColor(corSelecionada);
+				g2d.fillRect(590, 120, horizontal, vertical);
+
+				btnOk.setEnabled(false);
+			}
+
+		});
+		
+		btnCor7.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Graphics2D g2d = (Graphics2D) pPainel.getGraphics();
+				corSelecionada = cor7;
+				g2d.setColor(corSelecionada);
+				g2d.fillRect(590, 120, horizontal, vertical);
+
+				btnOk.setEnabled(false);
+			}
+
+		});
+
+		btnCor8.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Graphics2D g2d = (Graphics2D) pPainel.getGraphics();
+				corSelecionada = cor8;
+				g2d.setColor(corSelecionada);
+				g2d.fillRect(590, 120, horizontal, vertical);
+
+				btnOk.setEnabled(false);
+			}
+
+		});
+		
+		btnCor9.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Graphics2D g2d = (Graphics2D) pPainel.getGraphics();
+				corSelecionada = cor9;
+				g2d.setColor(corSelecionada);
+				g2d.fillRect(590, 120, horizontal, vertical);
+
+				btnOk.setEnabled(false);
+			}
+
+		});
+
+		btnCor10.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Graphics2D g2d = (Graphics2D) pPainel.getGraphics();
+				corSelecionada = cor10;
+				g2d.setColor(corSelecionada);
+				g2d.fillRect(590, 120, horizontal, vertical);
+
+				btnOk.setEnabled(false);
+			}
+
+		});
+		
+		btnCor11.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Graphics2D g2d = (Graphics2D) pPainel.getGraphics();
+				corSelecionada = cor11;
+				g2d.setColor(corSelecionada);
+				g2d.fillRect(590, 120, horizontal, vertical);
+
+				btnOk.setEnabled(false);
+			}
+
+		});
+
+		btnCor12.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Graphics2D g2d = (Graphics2D) pPainel.getGraphics();
+				corSelecionada = cor12;
+				g2d.setColor(corSelecionada);
+				g2d.fillRect(590, 120, horizontal, vertical);
+
+				btnOk.setEnabled(false);
+			}
+
+		});
+		
+		btnCor13.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Graphics2D g2d = (Graphics2D) pPainel.getGraphics();
+				corSelecionada = cor13;
+				g2d.setColor(corSelecionada);
+				g2d.fillRect(590, 120, horizontal, vertical);
+
+				btnOk.setEnabled(false);
+			}
+
+		});
+
+		btnCor14.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Graphics2D g2d = (Graphics2D) pPainel.getGraphics();
+				corSelecionada = cor14;
+				g2d.setColor(corSelecionada);
+				g2d.fillRect(590, 120, horizontal, vertical);
+
+				btnOk.setEnabled(false);
+			}
+
+		});
+		
+		btnCor15.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Graphics2D g2d = (Graphics2D) pPainel.getGraphics();
+				corSelecionada = cor15;
+				g2d.setColor(corSelecionada);
+				g2d.fillRect(590, 120, horizontal, vertical);
+
+				btnOk.setEnabled(false);
+			}
+
+		});
+
+		btnCor16.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Graphics2D g2d = (Graphics2D) pPainel.getGraphics();
+				corSelecionada = cor16;
+				g2d.setColor(corSelecionada);
+				g2d.fillRect(590, 120, horizontal, vertical);
+
+				btnOk.setEnabled(false);
+			}
+
+		});
+
+		
+	}
+
+}
